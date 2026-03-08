@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="nl" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monasaba – مناسبة – Marrakech Events</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --cream: #FAF5EC;
+    --dark: #1A1208;
+    --brown: #3D2B1A;
+    --rose: #C4735A;
+    --text: #3D2B1A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  body[dir="rtl"] { font-family: 'Amiri', serif; }
+  body[dir="rtl"] .row { direction: rtl; }
+  body[dir="rtl"] .offerte-line { flex-direction: row-reverse; }
+  body[dir="rtl"] .offerte-total { flex-direction: row-reverse; }
+  body[dir="rtl"] .step-number { left: auto; right: 40px; }
+
+  /* LANG SWITCHER */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(26,18,8,0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .lang-btn {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: rgba(250,245,236,0.5);
+    padding: 7px 12px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    transition: all 0.2s;
+    border-radius: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 52px;
+  }
+  .lang-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .lang-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark);
+    font-weight: 600;
+  }
+  .lang-flag { font-size: 1.4rem; line-height: 1; }
+  .lang-code { font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+
+  /* HERO */
+  header {
+    background: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 80px 20px 40px;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(26,18,8,0.72), rgba(26,18,8,0.82)),
+    url('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1600&q=80') center/cover no-repeat;
+  }
+
+  .arabesque {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation: spin 40s linear infinite;
+  }
+  .arabesque:nth-child(2) { width: 400px; height: 400px; animation-direction: reverse; animation-duration: 25s; border-color: rgba(201,168,76,0.1); }
+  .arabesque:nth-child(3) { width: 800px; height: 800px; animation-duration: 60s; border-color: rgba(201,168,76,0.07); }
+
+  @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+  .geo-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+    background-size: 30px 30px;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    margin-bottom: 30px;
+  }
+
+  .logo {
+    font-family: 'Amiri', serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .logo span { color: var(--gold); }
+
+  header .subtitle {
+    color: rgba(250,245,236,0.6);
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 50px;
+  }
+
+  .scroll-hint {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.7;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%,100% { opacity:0.4; } 50% { opacity:1; }
+  }
+
+  /* MAIN */
+  main { max-width: 900px; margin: 0 auto; padding: 80px 20px 100px; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  body[dir="rtl"] .section-title { font-family: 'Amiri', serif; }
+  .section-title span { color: var(--gold); font-style: italic; }
+  .section-sub { color: #8a7060; font-size: 0.95rem; margin-bottom: 40px; font-weight: 300; }
+
+  .divider {
+    display: flex; align-items: center; gap: 15px; margin-bottom: 40px;
+  }
+  .divider::before,.divider::after { content:''; flex:1; height:1px; background:linear-gradient(to right,transparent,var(--gold)); }
+  .divider::after { background:linear-gradient(to left,transparent,var(--gold)); }
+  .divider span { color:var(--gold); font-size:18px; }
+
+
+
+
+  /* DECORATION GRID */
+  .deco-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+  }
+  @media(max-width:600px) { .deco-grid { grid-template-columns: 1fr; } }
+  .deco-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .deco-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,18,8,0.7) 0%, transparent 60%);
+  }
+  .deco-img:hover { transform: scale(1.02); transition: transform 0.4s; }
+  .deco-label {
+    position: absolute;
+    bottom: 12px; left: 14px;
+    color: white;
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    z-index: 2;
+    font-weight: 500;
+  }
+
+  /* CARD IMAGES */
+  .card-img-wrap {
+    position: relative;
+    width: calc(100% + 24px);
+    margin: -16px -12px 10px -12px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 0;
+  }
+  .card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .option-card:hover .card-img-wrap img { transform: scale(1.08); }
+  .card-emoji {
+    position: absolute;
+    bottom: 5px; right: 8px;
+    font-size: 1.4rem;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+  }
+
+  /* GALLERY STRIP */
+  .gallery-strip {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 6px;
+    margin-bottom: 70px;
+    overflow: hidden;
+  }
+  .gallery-strip .g-img {
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+  }
+  .gallery-strip .g-img:hover { transform: scale(1.04); }
+  .gallery-strip .g-img:first-child { grid-row: 1 / 3; }
+  /* STEPS */
+  .step {
+    background: white;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px;
+    padding: 40px;
+    margin-bottom: 30px;
+    position: relative;
+    box-shadow: 0 4px 30px rgba(26,18,8,0.06);
+    transition: box-shadow 0.3s;
+  }
+  .step:hover { box-shadow: 0 8px 50px rgba(26,18,8,0.12); }
+
+  .step-number {
+    position: absolute;
+    top: -18px; left: 40px;
+    background: var(--gold);
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    padding: 4px 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .step h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 5px; }
+  body[dir="rtl"] .step h3 { font-family: 'Amiri', serif; font-size: 1.6rem; }
+  .step > p { color: #8a7060; font-size: 0.88rem; margin-bottom: 28px; }
+
+  /* FORM */
+  label {
+    display: block;
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8a7060;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+  label:first-of-type { margin-top: 0; }
+
+  input[type="text"], input[type="number"], input[type="email"], select, textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 1px;
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    background: var(--cream);
+    color: var(--dark);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+  }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width:600px) { .row { grid-template-columns: 1fr; } }
+
+  /* OPTION CARDS */
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .option-card {
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 16px 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.25s;
+    background: var(--cream);
+    user-select: none;
+  }
+  .option-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+  .option-card.selected {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.12);
+    box-shadow: inset 0 0 0 1px var(--gold);
+  }
+  .option-card .icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+  .option-card .name { font-size: 0.85rem; font-weight: 500; }
+  .option-card .price { font-size: 0.75rem; color: var(--rose); margin-top: 4px; }
+
+  /* LOCATION */
+  .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+  @media(max-width:500px) { .location-grid { grid-template-columns: 1fr; } }
+
+
+  .loc-img {
+    width: 100%;
+    height: 140px;
+    background-size: cover;
+    background-position: center;
+    margin: -20px -20px 16px -20px;
+    width: calc(100% + 40px);
+    transition: transform 0.4s ease;
+    overflow: hidden;
+  }
+  .location-card:hover .loc-img { transform: scale(1.03); }
+  .loc-body { padding: 0; }
+  .location-card { overflow: hidden; padding: 20px; }
+  .location-card {
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.25s;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .location-card::after {
+    content:''; position:absolute; bottom:0; left:0; width:0; height:2px;
+    background:var(--gold); transition:width 0.3s;
+  }
+  .location-card:hover::after, .location-card.selected::after { width:100%; }
+  .location-card.selected { border-color:var(--gold); background:rgba(201,168,76,0.08); }
+  .location-card h4 { font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:4px; }
+  .location-card p { font-size:0.82rem; color:#8a7060; font-weight:300; margin-bottom:10px; }
+  .location-card .loc-price { font-size:0.85rem; color:var(--rose); font-weight:500; }
+
+  /* SLIDER */
+  .slider-wrap { margin-top: 8px; }
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold) 0%, var(--gold) var(--pct,10%), rgba(201,168,76,0.2) var(--pct,10%));
+    border: none; outline: none; cursor: pointer; padding: 0;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    background: var(--dark);
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .slider-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .slider-value span { font-size: 1rem; color: #8a7060; font-family: 'Jost', sans-serif; }
+
+  /* OFFERTE */
+  .offerte-box {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 50px 40px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 50px;
+  }
+  .offerte-box::before {
+    content:''; position:absolute; inset:0;
+    background: repeating-linear-gradient(45deg, rgba(201,168,76,0.03) 0, rgba(201,168,76,0.03) 1px, transparent 0, transparent 30px);
+  }
+  .offerte-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 30px;
+    position: relative;
+  }
+  body[dir="rtl"] .offerte-box h2 { font-family: 'Amiri', serif; }
+
+  .offerte-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    position: relative;
+  }
+  .offerte-line .label { color: rgba(250,245,236,0.6); font-size: 0.9rem; font-weight: 300; }
+  .offerte-line .val { color: var(--cream); font-size: 0.95rem; font-weight: 500; text-align: right; }
+
+  .offerte-total {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    position: relative;
+  }
+  .offerte-total .t-label { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(250,245,236,0.5); }
+  .offerte-total .t-amount { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); line-height: 1; }
+  .offerte-total .t-amount span { font-size: 1.2rem; font-family: 'Jost', sans-serif; }
+
+  /* CONTACT */
+  .contact-section {
+    background: white;
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 40px;
+    margin-top: 30px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    padding: 16px 48px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    margin-top: 20px;
+    transition: all 0.3s;
+    font-weight: 500;
+    width: 100%;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #25D366;
+    color: white;
+    padding: 14px 30px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    margin-top: 12px;
+    width: 100%;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+  }
+  .whatsapp-btn:hover { background: #20ba5a; }
+
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 30px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid var(--gold);
+    margin-top: 20px;
+  }
+  .success-msg .s-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+  .success-msg h4 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 6px; }
+  .success-msg p { color: #8a7060; font-size: 0.9rem; }
+
+  footer {
+    background: var(--dark);
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(250,245,236,0.3);
+    font-size: 0.82rem;
+    letter-spacing: 1px;
+  }
+  footer .foot-logo { font-family:'Amiri',serif; font-size:1.8rem; color:rgba(250,245,236,0.6); margin-bottom:8px; }
+  footer span { color: var(--gold); }
+
+  @media(max-width:600px) {
+    .step { padding: 30px 20px; }
+    .offerte-box { padding: 30px 20px; }
+    .contact-section { padding: 30px 20px; }
+  }
+</style>
+</head>
+<body dir="ltr">
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('nl')"><div class="lang-flag">🇳🇱</div><div class="lang-code">NL</div></button>
+  <button class="lang-btn" onclick="setLang('fr')"><div class="lang-flag">🇫🇷</div><div class="lang-code">FR</div></button>
+  <button class="lang-btn" onclick="setLang('ar')"><div class="lang-flag">🇲🇦</div><div class="lang-code">عربي</div></button>
+  <button class="lang-btn" onclick="setLang('da')"><div class="lang-flag">🇲🇦</div><div class="lang-code">دارجة</div></button>
+  <button class="lang-btn" onclick="setLang('en')"><div class="lang-flag">🇬🇧</div><div class="lang-code">EN</div></button>
+</div>
+
+<!-- HERO -->
+<header>
+  <div class="arabesque"></div>
+  <div class="arabesque"></div>
+  <div class="arabesque"></div>
+  <div class="geo-pattern"></div>
+  <div class="header-content">
+    <div class="badge" data-t="badge">Marrakech · Feesten & Bruiloften</div>
+    <div class="logo">مناسبة <span>Monasaba</span></div>
+    <p class="subtitle" data-t="subtitle">Uw droom. Onze kunst. Marrakech.</p>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span data-t="scrollHint">Bereken uw offerte</span>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div style="text-align:center; margin-bottom:60px;">
+    <div class="section-title" data-t="mainTitle">Maak uw <span data-t="mainTitleSpan">Offerte Online</span></div>
+    <p class="section-sub" data-t="mainSub">Kies uw wensen — ontvangt direct een prijsberekening</p>
+    <div class="divider"><span>✦</span></div>
+  </div>
+
+
+  
+  <!-- PHOTO GALLERY -->
+  <div class="gallery-strip">
+    <div class="g-img" style="background-image:url('https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&q=80')"></div>
+    <div class="g-img" style="background-image:url('https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80')"></div>
+    <div class="g-img" style="background-image:url('https://images.unsplash.com/photo-1597211684565-dca64d4f5c19?w=600&q=80')"></div>
+    <div class="g-img" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80')"></div>
+    <div class="g-img" style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80')"></div>
+  </div>
+    <div class="g-img" style="background-image:url('https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80')"></div>
+    <div class="g-img" style="background-image:url('https://images.unsplash.com/photo-1597211684565-dca64d4f5c19?w=600&q=80')"></div>
+    <div class="g-img" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80')"></div>
+    <div class="g-img" style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80')"></div>
+  </div>
+
+  <!-- STAP 1 -->
+  <div class="step">
+    <div class="step-number" data-t="step1num">Stap 01</div>
+    <h3 data-t="step1title">Type Feest</h3>
+    <p data-t="step1sub">Wat voor evenement organiseert u?</p>
+    <div class="options-grid" id="feestType">
+      <div class="option-card selected" data-val="bruiloft" onclick="selectOne(this,'feestType')">
+        <span class="icon">💍</span>
+        <div class="name" data-t="t_bruiloft">Bruiloft</div>
+      </div>
+      <div class="option-card" data-val="verloving" onclick="selectOne(this,'feestType')">
+        <span class="icon">💝</span>
+        <div class="name" data-t="t_verloving">Verloving</div>
+      </div>
+      <div class="option-card" data-val="verjaardag" onclick="selectOne(this,'feestType')">
+        <span class="icon">🎂</span>
+        <div class="name" data-t="t_verjaardag">Verjaardag</div>
+      </div>
+      <div class="option-card" data-val="zakelijk" onclick="selectOne(this,'feestType')">
+        <span class="icon">🤝</span>
+        <div class="name" data-t="t_zakelijk">Zakelijk</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAP 2 -->
+  <div class="step">
+    <div class="step-number" data-t="step2num">Stap 02</div>
+    <h3 data-t="step2title">Aantal Gasten</h3>
+    <p data-t="step2sub">Hoeveel personen worden uitgenodigd?</p>
+    <div class="slider-value" id="gastenVal">50 <span data-t="guestsWord">gasten</span></div>
+    <div class="slider-wrap">
+      <input type="range" min="10" max="500" value="50" step="5"
+        oninput="updateSlider(this); calcPrice()">
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#8a7060;margin-top:6px;">
+      <span>10</span><span>500</span>
+    </div>
+  </div>
+
+  <!-- STAP 3 -->
+  <div class="step">
+    <div class="step-number" data-t="step3num">Stap 03</div>
+    <h3 data-t="step3title">Locatie</h3>
+    <p data-t="step3sub">Kies het type locatie in Marrakech</p>
+    <div class="location-grid" id="locType">
+      <div class="location-card selected" data-val="villa" data-price="15000" onclick="selectOne(this,'locType'); calcPrice()">
+        <div class="loc-img" style="background-image:url('https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80')"></div>
+        <div class="loc-body">
+          <h4>🏡 <span data-t="loc_villa">Privé Villa</span></h4>
+          <p data-t="loc_villa_desc">Exclusieve villa met tuin en zwembad</p>
+          <div class="loc-price" data-t="loc_villa_price">Vanaf 15.000 MAD</div>
+        </div>
+      </div>
+      <div class="location-card" data-val="riad" data-price="8000" onclick="selectOne(this,'locType'); calcPrice()">
+        <div class="loc-img" style="background-image:url('https://images.unsplash.com/photo-1597211684565-dca64d4f5c19?w=600&q=80')"></div>
+        <div class="loc-body">
+          <h4>🏮 <span data-t="loc_riad">Riad</span></h4>
+          <p data-t="loc_riad_desc">Traditionele riad in de medina</p>
+          <div class="loc-price" data-t="loc_riad_price">Vanaf 8.000 MAD</div>
+        </div>
+      </div>
+      <div class="location-card" data-val="paleis" data-price="25000" onclick="selectOne(this,'locType'); calcPrice()">
+        <div class="loc-img" style="background-image:url('https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80')"></div>
+        <div class="loc-body">
+          <h4>👑 <span data-t="loc_paleis">Paleis / Kasbah</span></h4>
+          <p data-t="loc_paleis_desc">Majestueuze setting met architectuur</p>
+          <div class="loc-price" data-t="loc_paleis_price">Vanaf 25.000 MAD</div>
+        </div>
+      </div>
+      <div class="location-card" data-val="zaal" data-price="5000" onclick="selectOne(this,'locType'); calcPrice()">
+        <div class="loc-img" style="background-image:url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&q=80')"></div>
+        <div class="loc-body">
+          <h4>🏛️ <span data-t="loc_zaal">Feestzaal</span></h4>
+          <p data-t="loc_zaal_desc">Professionele zaal met faciliteiten</p>
+          <div class="loc-price" data-t="loc_zaal_price">Vanaf 5.000 MAD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAP 4 -->
+  <div class="step">
+    <div class="step-number" data-t="step4num">Stap 04</div>
+    <h3 data-t="step4title">Catering & Buffet</h3>
+    <p data-t="step4sub">Selecteer de gerechten (meerdere keuzes mogelijk)</p>
+    <div class="options-grid" id="catering">
+      <div class="option-card selected" data-val="tajine" data-price="80" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1604908176997-4316c288032e?w=300&q=75" alt="tajine" loading="lazy"><span class="card-emoji">🍲</span></div>
+        <div class="name" data-t="c_tajine">Tajine</div>
+        <div class="price">80 MAD/p.p.</div>
+      </div>
+      <div class="option-card selected" data-val="couscous" data-price="60" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1625944525533-473f1f25c9c7?w=300&q=75" alt="couscous" loading="lazy"><span class="card-emoji">🫕</span></div>
+        <div class="name" data-t="c_couscous">Couscous</div>
+        <div class="price">60 MAD/p.p.</div>
+      </div>
+      <div class="option-card" data-val="mechoui" data-price="120" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&q=75" alt="mechoui" loading="lazy"><span class="card-emoji">🐑</span></div>
+        <div class="name" data-t="c_mechoui">Mechoui</div>
+        <div class="price">120 MAD/p.p.</div>
+      </div>
+      <div class="option-card selected" data-val="fruit" data-price="30" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=300&q=75" alt="fruit" loading="lazy"><span class="card-emoji">🍉</span></div>
+        <div class="name" data-t="c_fruit">Fruit</div>
+        <div class="price">30 MAD/p.p.</div>
+      </div>
+      <div class="option-card selected" data-val="dessert" data-price="50" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=300&q=75" alt="dessert" loading="lazy"><span class="card-emoji">🍰</span></div>
+        <div class="name" data-t="c_dessert">Desserts</div>
+        <div class="price">50 MAD/p.p.</div>
+      </div>
+      <div class="option-card" data-val="pastilla" data-price="70" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&q=75" alt="pastilla" loading="lazy"><span class="card-emoji">🥧</span></div>
+        <div class="name" data-t="c_pastilla">Pastilla</div>
+        <div class="price">70 MAD/p.p.</div>
+      </div>
+      <div class="option-card" data-val="bbq" data-price="100" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=300&q=75" alt="bbq" loading="lazy"><span class="card-emoji">🔥</span></div>
+        <div class="name" data-t="c_bbq">BBQ Grill</div>
+        <div class="price">100 MAD/p.p.</div>
+      </div>
+      <div class="option-card" data-val="thee" data-price="15" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&q=75" alt="thee" loading="lazy"><span class="card-emoji">🍵</span></div>
+        <div class="name" data-t="c_thee">Thé à la Menthe</div>
+        <div class="price">15 MAD/p.p.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAP 5 -->
+  <div class="step">
+    <div class="step-number" data-t="step5num">Stap 05</div>
+    <h3 data-t="step5title">Entertainment & Extra's</h3>
+    <p data-t="step5sub">Maak uw feest onvergetelijk</p>
+    <div class="options-grid" id="entertainment">
+      <div class="option-card selected" data-val="muziek" data-price="3000" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1501612780327-45045538702b?w=300&q=75" alt="muziek" loading="lazy"><span class="card-emoji">🎶</span></div>
+        <div class="name" data-t="e_muziek">Live Muziek</div>
+        <div class="price">3.000 MAD</div>
+      </div>
+      <div class="option-card" data-val="gnawa" data-price="2000" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=300&q=75" alt="gnawa" loading="lazy"><span class="card-emoji">🥁</span></div>
+        <div class="name" data-t="e_gnawa">Gnawa Band</div>
+        <div class="price">2.000 MAD</div>
+      </div>
+      <div class="option-card" data-val="dansers" data-price="2500" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?w=300&q=75" alt="dansers" loading="lazy"><span class="card-emoji">💃</span></div>
+        <div class="name" data-t="e_dansers">Dansers</div>
+        <div class="price">2.500 MAD</div>
+      </div>
+      <div class="option-card" data-val="foto" data-price="2000" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=300&q=75" alt="foto" loading="lazy"><span class="card-emoji">📷</span></div>
+        <div class="name" data-t="e_foto">Fotograaf</div>
+        <div class="price">2.000 MAD</div>
+      </div>
+      <div class="option-card" data-val="video" data-price="2500" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1578022761797-b8636ac1773c?w=300&q=75" alt="video" loading="lazy"><span class="card-emoji">🎥</span></div>
+        <div class="name" data-t="e_video">Videograaf</div>
+        <div class="price">2.500 MAD</div>
+      </div>
+      <div class="option-card" data-val="decor" data-price="4000" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1529636798458-92182e662485?w=300&q=75" alt="decor" loading="lazy"><span class="card-emoji">🌹</span></div>
+        <div class="name" data-t="e_decor">Bloemen Decor</div>
+        <div class="price">4.000 MAD</div>
+      </div>
+      <div class="option-card" data-val="vuurwerk" data-price="5000" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1502139214982-d0ad755818d8?w=300&q=75" alt="vuurwerk" loading="lazy"><span class="card-emoji">🎆</span></div>
+        <div class="name" data-t="e_vuurwerk">Vuurwerk</div>
+        <div class="price">5.000 MAD</div>
+      </div>
+      <div class="option-card" data-val="vervoer" data-price="1500" onclick="toggleMulti(this); calcPrice()"><div class="card-img-wrap"><img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=300&q=75" alt="vervoer" loading="lazy"><span class="card-emoji">🚌</span></div>
+        <div class="name" data-t="e_vervoer">Vervoer</div>
+        <div class="price">1.500 MAD</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- DECORATION SECTION -->
+  <div class="step" style="margin-top:30px;">
+    <div class="step-number" data-t="step6num">Extra</div>
+    <h3 data-t="step6title">Inspiratie & Decoratie</h3>
+    <p data-t="step6sub">Onze stijl — uw herinnering</p>
+    <div class="deco-grid">
+      <div class="deco-img" style="background-image:url('https://images.unsplash.com/photo-1529636798458-92182e662485?w=600&q=80')">
+        <div class="deco-label" data-t="deco1">Bruidstafel</div>
+      </div>
+      <div class="deco-img" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=80')">
+        <div class="deco-label" data-t="deco2">Lantaarn Decor</div>
+      </div>
+      <div class="deco-img" style="background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80')">
+        <div class="deco-label" data-t="deco3">Trouwpodium</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFERTE BOX -->
+  <div class="offerte-box">
+    <h2>✦ <span data-t="offerteTitle">Uw Offerte</span></h2>
+    <div id="offerteLines"></div>
+    <div class="offerte-total">
+      <div class="t-label" data-t="totalLabel">Totaal Schatting</div>
+      <div class="t-amount" id="totalPrice">0 <span>MAD</span></div>
+    </div>
+    <p style="color:rgba(250,245,236,0.35);font-size:0.78rem;margin-top:20px;font-weight:300;position:relative;" data-t="offerteNote">
+      * Indicatieve prijs. Neem contact op voor een definitieve offerte op maat.
+    </p>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:6px;" data-t="contactTitle">Offerte Aanvragen</h3>
+    <p style="color:#8a7060;font-size:0.88rem;margin-bottom:25px;font-weight:300;" data-t="contactSub">Vul uw gegevens in — wij nemen binnen 24 uur contact op</p>
+
+    <div class="row">
+      <div>
+        <label data-t="labelNaam">Uw Naam</label>
+        <input type="text" id="naam" data-t-ph="phNaam" placeholder="Voornaam & Achternaam">
+      </div>
+      <div>
+        <label data-t="labelTel">Telefoon / WhatsApp</label>
+        <input type="text" id="tel" placeholder="+212 722 483 755">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label data-t="labelEmail">E-mailadres</label>
+        <input type="email" id="email" data-t-ph="phEmail" placeholder="uw@email.com">
+      </div>
+      <div>
+        <label data-t="labelDatum">Datum Evenement</label>
+        <input type="text" id="datum" data-t-ph="phDatum" placeholder="dd/mm/jjjj">
+      </div>
+    </div>
+    <label data-t="labelOpmerking">Extra Opmerkingen</label>
+    <input type="text" id="opmerkingen" data-t-ph="phOpmerking" placeholder="Speciale wensen, allergieën, thema...">
+
+    <button class="btn-primary" onclick="stuurOfferte()" data-t="btnOfferte">Offerte Verzenden ✦</button>
+    <button class="whatsapp-btn" onclick="stuurWhatsApp()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span data-t="btnWhatsApp">Direct via WhatsApp</span>
+    </button>
+
+    <div class="success-msg" id="successMsg">
+      <span class="s-icon">🌟</span>
+      <h4 data-t="successTitle">Offerte Ontvangen!</h4>
+      <p data-t="successSub">Wij nemen binnen 24 uur contact met u op. Shukran!</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-logo">مناسبة <span>Monasaba</span></div>
+  <div>Marrakech, Maroc &nbsp;·&nbsp; +212 722 483 755 &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0365626e6c707a7077666e436b6c776e626a6f2d606c6e">[email&#160;protected]</a></div>
+  <div style="margin-top:10px;font-size:0.75rem;opacity:0.5;" data-t="footerCopy">© 2025 Monasaba – Tous droits réservés</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ============================================================
+// TRANSLATIONS
+// ============================================================
+const T = {
+  nl: {
+    dir: 'ltr',
+    badge: 'Marrakech · Feesten & Bruiloften',
+    subtitle: 'Uw droom. Onze kunst. Marrakech.',
+    scrollHint: 'Bereken uw offerte',
+    mainTitle: 'Maak uw ', mainTitleSpan: 'Offerte Online',
+    mainSub: 'Kies uw wensen — ontvangt direct een prijsberekening',
+    step1num:'Stap 01', step1title:'Type Feest', step1sub:'Wat voor evenement organiseert u?',
+    step2num:'Stap 02', step2title:'Aantal Gasten', step2sub:'Hoeveel personen worden uitgenodigd?',
+    step3num:'Stap 03', step3title:'Locatie', step3sub:'Kies het type locatie in Marrakech',
+    step4num:'Stap 04', step4title:'Catering & Buffet', step4sub:'Selecteer de gerechten (meerdere keuzes mogelijk)',
+    step5num:'Stap 05', step5title:"Entertainment & Extra's", step5sub:'Maak uw feest onvergetelijk',
+    guestsWord:'gasten',
+    t_bruiloft:'Bruiloft', t_verloving:'Verloving', t_verjaardag:'Verjaardag', t_zakelijk:'Zakelijk',
+    loc_villa:'Privé Villa', loc_villa_desc:'Exclusieve villa met tuin en zwembad', loc_villa_price:'Vanaf 15.000 MAD',
+    loc_riad:'Riad', loc_riad_desc:'Traditionele riad in de medina', loc_riad_price:'Vanaf 8.000 MAD',
+    loc_paleis:'Paleis / Kasbah', loc_paleis_desc:'Majestueuze setting met architectuur', loc_paleis_price:'Vanaf 25.000 MAD',
+    loc_zaal:'Feestzaal', loc_zaal_desc:'Professionele zaal met faciliteiten', loc_zaal_price:'Vanaf 5.000 MAD',
+    c_tajine:'Tajine', c_couscous:'Couscous', c_mechoui:'Mechoui', c_fruit:'Fruit',
+    c_dessert:'Desserts', c_pastilla:'Pastilla', c_bbq:'BBQ Grill', c_thee:'Muntthee',
+    e_muziek:'Live Muziek', e_gnawa:'Gnawa Band', e_dansers:'Dansers', e_foto:'Fotograaf',
+    e_video:'Videograaf', e_decor:'Bloemen Decor', e_vuurwerk:'Vuurwerk', e_vervoer:'Vervoer',
+    offerteTitle:'Uw Offerte', totalLabel:'Totaal Schatting',
+    offerteNote:'* Indicatieve prijs. Neem contact op voor een definitieve offerte op maat.',
+    contactTitle:'Offerte Aanvragen', contactSub:'Vul uw gegevens in — wij nemen binnen 24 uur contact op',
+    labelNaam:'Uw Naam', labelTel:'Telefoon / WhatsApp', labelEmail:'E-mailadres',
+    labelDatum:'Datum Evenement', labelOpmerking:'Extra Opmerkingen',
+    phNaam:'Voornaam & Achternaam', phEmail:'uw@email.com', phDatum:'dd/mm/jjjj',
+    phOpmerking:'Speciale wensen, allergieën, thema...',
+    btnOfferte:'Offerte Verzenden ✦', btnWhatsApp:'Direct via WhatsApp',
+    successTitle:'Offerte Ontvangen!', successSub:'Wij nemen binnen 24 uur contact met u op. Shukran!',
+    footerCopy:'© 2025 Monasaba – Alle rechten voorbehouden',
+    step6num:'Extra', step6title:'Inspiratie & Decoratie', step6sub:'Onze stijl — uw herinnering',
+    deco1:'Bruidstafel', deco2:'Lantaarn Decor', deco3:'Trouwpodium',
+    o_gasten:'Gasten', o_locatie:'Locatie', o_buffet:'Buffet', o_entertainment:'Entertainment',
+  },
+  fr: {
+    dir: 'ltr',
+    badge: 'Marrakech · Fêtes & Mariages',
+    subtitle: 'Votre rêve. Notre art. Marrakech.',
+    scrollHint: 'Calculez votre devis',
+    mainTitle: 'Créez votre ', mainTitleSpan: 'Devis en Ligne',
+    mainSub: 'Choisissez vos options — recevez un devis instantané',
+    step1num:'Étape 01', step1title:'Type de Fête', step1sub:'Quel événement souhaitez-vous organiser ?',
+    step2num:'Étape 02', step2title:'Nombre d\'Invités', step2sub:'Combien de personnes seront invitées ?',
+    step3num:'Étape 03', step3title:'Lieu', step3sub:'Choisissez le type de lieu à Marrakech',
+    step4num:'Étape 04', step4title:'Restauration & Buffet', step4sub:'Sélectionnez les plats (plusieurs choix possibles)',
+    step5num:'Étape 05', step5title:'Divertissement & Extras', step5sub:'Rendez votre fête inoubliable',
+    guestsWord:'invités',
+    t_bruiloft:'Mariage', t_verloving:'Fiançailles', t_verjaardag:'Anniversaire', t_zakelijk:'Événement Pro',
+    loc_villa:'Villa Privée', loc_villa_desc:'Villa exclusive avec jardin et piscine', loc_villa_price:'À partir de 15.000 MAD',
+    loc_riad:'Riad', loc_riad_desc:'Riad traditionnel dans la médina', loc_riad_price:'À partir de 8.000 MAD',
+    loc_paleis:'Palais / Kasbah', loc_paleis_desc:'Cadre majestueux avec architecture unique', loc_paleis_price:'À partir de 25.000 MAD',
+    loc_zaal:'Salle des Fêtes', loc_zaal_desc:'Salle professionnelle avec équipements', loc_zaal_price:'À partir de 5.000 MAD',
+    c_tajine:'Tajine', c_couscous:'Couscous', c_mechoui:'Méchoui', c_fruit:'Fruits',
+    c_dessert:'Desserts', c_pastilla:'Pastilla', c_bbq:'Grill BBQ', c_thee:'Thé à la Menthe',
+    e_muziek:'Musique Live', e_gnawa:'Groupe Gnawa', e_dansers:'Danseurs', e_foto:'Photographe',
+    e_video:'Vidéaste', e_decor:'Décoration Florale', e_vuurwerk:'Feux d\'Artifice', e_vervoer:'Transport',
+    offerteTitle:'Votre Devis', totalLabel:'Estimation Totale',
+    offerteNote:'* Prix indicatif. Contactez-nous pour un devis définitif personnalisé.',
+    contactTitle:'Demander un Devis', contactSub:'Remplissez vos coordonnées — nous vous répondons sous 24h',
+    labelNaam:'Votre Nom', labelTel:'Téléphone / WhatsApp', labelEmail:'Adresse E-mail',
+    labelDatum:'Date de l\'Événement', labelOpmerking:'Remarques Supplémentaires',
+    phNaam:'Prénom & Nom', phEmail:'votre@email.com', phDatum:'jj/mm/aaaa',
+    phOpmerking:'Souhaits spéciaux, allergies, thème...',
+    btnOfferte:'Envoyer le Devis ✦', btnWhatsApp:'Envoyer via WhatsApp',
+    successTitle:'Devis Reçu !', successSub:'Nous vous contacterons dans les 24h. Chokran !',
+    footerCopy:'© 2025 Monasaba – Tous droits réservés',
+    step6num:'Extra', step6title:'Inspiration & Décoration', step6sub:'Notre style — votre souvenir',
+    deco1:'Table nuptiale', deco2:'Décor lanternes', deco3:'Scène mariage',
+    o_gasten:'Invités', o_locatie:'Lieu', o_buffet:'Buffet', o_entertainment:'Divertissement',
+  },
+  ar: {
+    dir: 'rtl',
+    badge: 'مراكش · أفراح ومناسبات',
+    subtitle: 'حلمك. فننا. مراكش.',
+    scrollHint: 'احسب عرض أسعارك',
+    mainTitle: 'اطلب ', mainTitleSpan: 'عرض سعر أونلاين',
+    mainSub: 'اختر ما تريد — تصلك الأسعار فوراً',
+    step1num:'الخطوة ١', step1title:'نوع المناسبة', step1sub:'ما هو الحفل الذي تريد تنظيمه؟',
+    step2num:'الخطوة ٢', step2title:'عدد المدعوين', step2sub:'كم شخصاً ستدعو؟',
+    step3num:'الخطوة ٣', step3title:'المكان', step3sub:'اختر نوع المكان في مراكش',
+    step4num:'الخطوة ٤', step4title:'الطعام والبوفيه', step4sub:'اختر الأكلات (يمكن اختيار أكثر من واحدة)',
+    step5num:'الخطوة ٥', step5title:'الترفيه والإضافات', step5sub:'اجعل حفلك لا يُنسى',
+    guestsWord:'مدعو',
+    t_bruiloft:'عرس', t_verloving:'خطوبة', t_verjaardag:'عيد ميلاد', t_zakelijk:'حفل رسمي',
+    loc_villa:'فيلا خاصة', loc_villa_desc:'فيلا فاخرة مع حديقة ومسبح', loc_villa_price:'ابتداءً من 15,000 درهم',
+    loc_riad:'رياض', loc_riad_desc:'رياض تقليدي في المدينة القديمة', loc_riad_price:'ابتداءً من 8,000 درهم',
+    loc_paleis:'قصر / قصبة', loc_paleis_desc:'إطار ملكي بمعمار فريد', loc_paleis_price:'ابتداءً من 25,000 درهم',
+    loc_zaal:'قاعة الأفراح', loc_zaal_desc:'قاعة احترافية بكامل التجهيزات', loc_zaal_price:'ابتداءً من 5,000 درهم',
+    c_tajine:'طاجين', c_couscous:'كسكس', c_mechoui:'مشوي', c_fruit:'فواكه',
+    c_dessert:'حلويات', c_pastilla:'بسطيلة', c_bbq:'شواء', c_thee:'أتاي',
+    e_muziek:'موسيقى حية', e_gnawa:'فرقة كناوة', e_dansers:'راقصون', e_foto:'مصور',
+    e_video:'مصور فيديو', e_decor:'زينة وورود', e_vuurwerk:'ألعاب نارية', e_vervoer:'نقل',
+    offerteTitle:'عرض أسعارك', totalLabel:'التقدير الإجمالي',
+    offerteNote:'* سعر تقديري. تواصل معنا للحصول على عرض نهائي مخصص لك.',
+    contactTitle:'طلب عرض سعر', contactSub:'أدخل بياناتك — سنتواصل معك خلال 24 ساعة',
+    labelNaam:'اسمك', labelTel:'هاتف / واتساب', labelEmail:'البريد الإلكتروني',
+    labelDatum:'تاريخ الحفل', labelOpmerking:'ملاحظات إضافية',
+    phNaam:'الاسم الكامل', phEmail:'بريدك@الإلكتروني', phDatum:'يوم/شهر/سنة',
+    phOpmerking:'رغبات خاصة، حساسيات، ثيم...',
+    btnOfferte:'إرسال الطلب ✦', btnWhatsApp:'إرسال عبر واتساب',
+    successTitle:'!تم استلام طلبك', successSub:'سنتواصل معك خلال 24 ساعة. شكراً!',
+    footerCopy:'© 2025 مناسبة – جميع الحقوق محفوظة',
+    o_gasten:'مدعو', o_locatie:'المكان', o_buffet:'البوفيه', o_entertainment:'الترفيه',
+  },
+  da: {
+    dir: 'rtl',
+    badge: 'مراكش · أعراس ومناسبات',
+    subtitle: 'حلمك. فننا. مراكش.',
+    scrollHint: 'حسب الثمن ديالك',
+    mainTitle: 'طلب ', mainTitleSpan: 'عرض دالثمن أونلاين',
+    mainSub: 'ختار شنو بغيتي — تيجيك الأسعار في الحال',
+    step1num:'الخطوة ١', step1title:'نوع المناسبة', step1sub:'شنو النوع دالحفلة لي بغيتي تعمل؟',
+    step2num:'الخطوة ٢', step2title:'عدد الضيوف', step2sub:'شحال ضيف غادي تدعوه؟',
+    step3num:'الخطوة ٣', step3title:'المكان', step3sub:'ختار نوع المكان فمراكش',
+    step4num:'الخطوة ٤', step4title:'الماكلة والبوفيه', step4sub:'ختار الأكلات (يمكن تختار أكثر من واحدة)',
+    step5num:'الخطوة ٥', step5title:'الفرحة والزيادات', step5sub:'خلي حفلتك لا تنسى',
+    guestsWord:'ضيوف',
+    t_bruiloft:'عرس', t_verloving:'خطوبة', t_verjaardag:'عيد ميلاد', t_zakelijk:'حفلة رسمية',
+    loc_villa:'فيلا خاصة', loc_villa_desc:'فيلا كبيرة بحديقة وبيسين', loc_villa_price:'من 15,000 درهم',
+    loc_riad:'رياض', loc_riad_desc:'رياض أصيل فالمدينة القديمة', loc_riad_price:'من 8,000 درهم',
+    loc_paleis:'قصر / قصبة', loc_paleis_desc:'إطار ملكي بنية معمارية مميزة', loc_paleis_price:'من 25,000 درهم',
+    loc_zaal:'قاعة الأفراح', loc_zaal_desc:'قاعة مجهزة بكامل الإمكانيات', loc_zaal_price:'من 5,000 درهم',
+    c_tajine:'طاجين', c_couscous:'كسكس', c_mechoui:'مشوي', c_fruit:'فواكه',
+    c_dessert:'حلويات', c_pastilla:'بسطيلة', c_bbq:'شواء', c_thee:'أتاي',
+    e_muziek:'موسيقى حية', e_gnawa:'ناس الكناوة', e_dansers:'شيخات', e_foto:'مصور',
+    e_video:'فيديوغراف', e_decor:'زينة وورود', e_vuurwerk:'ألعاب نارية', e_vervoer:'نقل الضيوف',
+    offerteTitle:'العرض ديالك', totalLabel:'المجموع التقديري',
+    offerteNote:'* هذا ثمن تقديري. تواصل معنا باش تحصل على عرض نهائي.',
+    contactTitle:'طلب عرض الثمن', contactSub:'عمر البيانات ديالك — غنتواصلو معك خلال 24 ساعة',
+    labelNaam:'سميتك', labelTel:'تيليفون / واتساب', labelEmail:'الإيميل',
+    labelDatum:'التاريخ دالحفلة', labelOpmerking:'ملاحظات إضافية',
+    phNaam:'الاسم الكامل', phEmail:'الإيميل ديالك', phDatum:'يوم/شهر/عام',
+    phOpmerking:'رغبات خاصة، حساسية، ثيم...',
+    btnOfferte:'سيفط الطلب ✦', btnWhatsApp:'سيفط عبر واتساب',
+    successTitle:'!وصل الطلب ديالك', successSub:'غنتواصلو معك خلال 24 ساعة. شكراً بزاف!',
+    footerCopy:'© 2025 مناسبة – جميع الحقوق محفوظة',
+    step6num:'زيادة', step6title:'الإلهام والزينة', step6sub:'ستيلنا — ذكراكم',
+    deco1:'طاولة العروسين', deco2:'زينة الفوانيس', deco3:'منصة الأفراح',
+    o_gasten:'ضيوف', o_locatie:'المكان', o_buffet:'البوفيه', o_entertainment:'الفرحة',
+  },
+  en: {
+    dir: 'ltr',
+    badge: 'Marrakech · Events & Weddings',
+    subtitle: 'Your dream. Our craft. Marrakech.',
+    scrollHint: 'Get your quote',
+    mainTitle: 'Get your ', mainTitleSpan: 'Online Quote',
+    mainSub: 'Choose your options — receive an instant price estimate',
+    step1num:'Step 01', step1title:'Event Type', step1sub:'What kind of event are you planning?',
+    step2num:'Step 02', step2title:'Number of Guests', step2sub:'How many people will be invited?',
+    step3num:'Step 03', step3title:'Venue', step3sub:'Choose your venue type in Marrakech',
+    step4num:'Step 04', step4title:'Catering & Buffet', step4sub:'Select your dishes (multiple choices)',
+    step5num:'Step 05', step5title:'Entertainment & Extras', step5sub:'Make your event unforgettable',
+    guestsWord:'guests',
+    t_bruiloft:'Wedding', t_verloving:'Engagement', t_verjaardag:'Birthday', t_zakelijk:'Corporate',
+    loc_villa:'Private Villa', loc_villa_desc:'Exclusive villa with garden and pool', loc_villa_price:'From 15,000 MAD',
+    loc_riad:'Riad', loc_riad_desc:'Traditional riad in the medina', loc_riad_price:'From 8,000 MAD',
+    loc_paleis:'Palace / Kasbah', loc_paleis_desc:'Majestic setting with unique architecture', loc_paleis_price:'From 25,000 MAD',
+    loc_zaal:'Event Hall', loc_zaal_desc:'Professional hall with full facilities', loc_zaal_price:'From 5,000 MAD',
+    c_tajine:'Tajine', c_couscous:'Couscous', c_mechoui:'Mechoui', c_fruit:'Fresh Fruits',
+    c_dessert:'Desserts', c_pastilla:'Pastilla', c_bbq:'BBQ Grill', c_thee:'Mint Tea',
+    e_muziek:'Live Music', e_gnawa:'Gnawa Band', e_dansers:'Dancers', e_foto:'Photographer',
+    e_video:'Videographer', e_decor:'Floral Decor', e_vuurwerk:'Fireworks', e_vervoer:'Transport',
+    offerteTitle:'Your Quote', totalLabel:'Total Estimate',
+    offerteNote:'* Indicative price. Contact us for a final personalized quote.',
+    contactTitle:'Request a Quote', contactSub:'Fill in your details — we reply within 24 hours',
+    labelNaam:'Your Name', labelTel:'Phone / WhatsApp', labelEmail:'Email Address',
+    labelDatum:'Event Date', labelOpmerking:'Additional Notes',
+    phNaam:'First & Last Name', phEmail:'your@email.com', phDatum:'dd/mm/yyyy',
+    phOpmerking:'Special wishes, allergies, theme...',
+    btnOfferte:'Send Quote Request ✦', btnWhatsApp:'Send via WhatsApp',
+    successTitle:'Quote Received!', successSub:'We will contact you within 24 hours. Shukran!',
+    footerCopy:'© 2025 Monasaba – All rights reserved',
+    step6num:'Extra', step6title:'Inspiration & Decoration', step6sub:'Our style — your memory',
+    deco1:'Wedding Table', deco2:'Lantern Decor', deco3:'Wedding Stage',
+    o_gasten:'Guests', o_locatie:'Venue', o_buffet:'Buffet', o_entertainment:'Entertainment',
+  }
+};
+
+let currentLang = 'nl';
+let guestsCount = 50;
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = T[lang];
+
+  // Direction
+  document.body.setAttribute('dir', t.dir);
+  document.documentElement.setAttribute('lang', lang);
+
+  // Update all elements with data-t
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  // Placeholders
+  document.querySelectorAll('[data-t-ph]').forEach(el => {
+    const key = el.getAttribute('data-t-ph');
+    if (t[key] !== undefined) el.placeholder = t[key];
+  });
+
+  // Active button
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  // Recalc
+  updateGuestsDisplay();
+  calcPrice();
+}
+
+function selectOne(el, groupId) {
+  document.querySelectorAll('#'+groupId+' .option-card, #'+groupId+' .location-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  calcPrice();
+}
+
+function toggleMulti(el) {
+  el.classList.toggle('selected');
+}
+
+function updateGuestsDisplay() {
+  const t = T[currentLang];
+  document.getElementById('gastenVal').innerHTML = guestsCount + ' <span>' + t.guestsWord + '</span>';
+}
+
+function updateSlider(el) {
+  guestsCount = parseInt(el.value);
+  const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
+  el.style.setProperty('--pct', pct + '%');
+  updateGuestsDisplay();
+}
+
+function calcPrice() {
+  const t = T[currentLang];
+
+  const locCard = document.querySelector('#locType .selected');
+  const locPrice = locCard ? parseInt(locCard.dataset.price) : 0;
+  const locName = locCard ? locCard.querySelector('h4').textContent : '';
+
+  let cateringPP = 0, cateringItems = [];
+  document.querySelectorAll('#catering .selected').forEach(c => {
+    cateringPP += parseInt(c.dataset.price);
+    cateringItems.push(c.querySelector('.name').textContent);
+  });
+  const cateringTotal = cateringPP * guestsCount;
+
+  let entTotal = 0, entItems = [];
+  document.querySelectorAll('#entertainment .selected').forEach(c => {
+    entTotal += parseInt(c.dataset.price);
+    entItems.push(c.querySelector('.name').textContent);
+  });
+
+  const total = locPrice + cateringTotal + entTotal;
+
+  document.getElementById('offerteLines').innerHTML = `
+    <div class="offerte-line">
+      <span class="label">👥 ${t.o_gasten}</span>
+      <span class="val">${guestsCount} ${t.guestsWord}</span>
+    </div>
+    <div class="offerte-line">
+      <span class="label">${locName}</span>
+      <span class="val">${locPrice.toLocaleString()} MAD</span>
+    </div>
+    <div class="offerte-line">
+      <span class="label">🍽️ ${t.o_buffet} (${cateringItems.join(', ')||'—'})</span>
+      <span class="val">${cateringPP} × ${guestsCount} = ${cateringTotal.toLocaleString()} MAD</span>
+    </div>
+    <div class="offerte-line">
+      <span class="label">🎶 ${t.o_entertainment} (${entItems.join(', ')||'—'})</span>
+      <span class="val">${entTotal.toLocaleString()} MAD</span>
+    </div>
+  `;
+
+  document.getElementById('totalPrice').innerHTML = total.toLocaleString('fr-MA') + ' <span>MAD</span>';
+}
+
+function stuurOfferte() {
+  const naam = document.getElementById('naam').value;
+  const tel = document.getElementById('tel').value;
+  if (!naam || !tel) { alert('⚠️'); return; }
+  document.getElementById('successMsg').style.display = 'block';
+  document.querySelector('.btn-primary').style.display = 'none';
+}
+
+function stuurWhatsApp() {
+  const naam = document.getElementById('naam').value || '—';
+  const datum = document.getElementById('datum').value || '—';
+  const total = document.getElementById('totalPrice').textContent.trim();
+  const locCard = document.querySelector('#locType .selected');
+  const locName = locCard ? locCard.querySelector('h4').textContent : '—';
+
+  let cateringItems = [];
+  document.querySelectorAll('#catering .selected').forEach(c => cateringItems.push(c.querySelector('.name').textContent));
+  let entItems = [];
+  document.querySelectorAll('#entertainment .selected').forEach(c => entItems.push(c.querySelector('.name').textContent));
+
+  const msg = `Salam! Demande de devis Monasaba 🌟\n\n👤 Nom: ${naam}\n📅 Date: ${datum}\n👥 Invités: ${guestsCount}\n🏡 Lieu: ${locName}\n🍽️ Buffet: ${cateringItems.join(', 
